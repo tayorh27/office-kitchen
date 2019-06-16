@@ -115,27 +115,31 @@ export class MenuComponent implements OnInit {
     }
     switch (package_type) {
       case 'economy-week':
-        this.selected_plan = 'ECONOMY - ONE WEEK (₦3,000)';
+        this.selected_plan = 'ECONOMY - ONE WEEK (₦2,500)';
         this.subscription_plan = 'economy';
-        this.amount_to_pay = '300000';
+        // this.amount_to_pay = '300000';
+        this.amount_to_pay = '250000';
         this.open(content, 'Notification', '');
         break;
       case 'economy-month':
         this.subscription_plan = 'economy';
-        this.selected_plan = 'ECONOMY - ONE MONTH (₦11,000)';
-        this.amount_to_pay = '1100000';
+        this.selected_plan = 'ECONOMY - ONE MONTH (₦10,500)';
+        // this.amount_to_pay = '1100000';
+        this.amount_to_pay = '1050000';
         this.open(content, 'Notification', '');
         break;
       case 'standard-week':
         this.subscription_plan = 'standard';
-        this.selected_plan = 'STANDARD - ONE WEEK (₦5,000)';
-        this.amount_to_pay = '500000';
+        this.selected_plan = 'STANDARD - ONE WEEK (₦4,500)';
+        // this.amount_to_pay = '500000';
+        this.amount_to_pay = '450000';
         this.open(content, 'Notification', '');
         break;
       case 'standard-month':
         this.subscription_plan = 'standard';
-        this.selected_plan = 'STANDARD - ONE MONTH (₦20,000)';
-        this.amount_to_pay = '2000000';
+        this.selected_plan = 'STANDARD - ONE MONTH (₦19,500)';
+        // this.amount_to_pay = '2000000';
+        this.amount_to_pay = '19500000';
         this.open(content, 'Notification', '');
         break;
     }

@@ -18,7 +18,8 @@
           <div class="row">
             <div class="col-lg-6">
               <h1 class="display-3  text-white">Work. Eat. Succeed.
-                <span>we deliver quality food</span>
+                <!-- <span>we deliver quality food</span> -->
+                <span>ENJOY ₦500 DISCOUNT OFF YOUR NEXT ORDER</span>
               </h1>
               <p class="lead  text-white">Office kitchen is on its way to being the largest individual producer and distributor of high quality and affordable food to offices in Lagos, Nigeria.</p>
               <div class="btn-wrapper">
@@ -548,4 +549,15 @@
       </div>
     </div>
   </section> -->
+  
+  <ng-template #classic3 let-c="close" let-d="dismiss">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="../../assets/img/discount.png" class="img-fluid rounded shadow-lg">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="orderNow()">Order Now</button>
+      </div>
+    </div>
+  </ng-template>
 </main>

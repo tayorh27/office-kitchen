@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { NgbCarouselConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from "@angular/common/http";
 import { EmailBody } from '../email-body';
 
 import { OverlayService } from '../overlay/overlay.module';
 import { ProgressSpinnerComponent } from '../progress-spinner/progress-spinner.module';
+import { timer } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-landing',
@@ -25,10 +27,14 @@ export class LandingComponent implements OnInit {
   isSuccess = false;
   errorMessage = '';
   successMessage = '';
+  closeResult:string;
+  _timer = timer(5000);
+
+  @ViewChild('classic3') private container: ElementRef;
 
   emailBody = new EmailBody();
 
-  constructor(config: NgbCarouselConfig, private http: HttpClient, private previewProgressSpinner: OverlayService) { 
+  constructor(config: NgbCarouselConfig, private http: HttpClient, private previewProgressSpinner: OverlayService, private modalService: NgbModal, private router: Router) { 
     config.interval = 3000;
     config.wrap = true;
     config.keyboard = true;
@@ -46,7 +52,23 @@ export class LandingComponent implements OnInit {
 // };
 
   ngOnInit() {
-    
+    this.displayDiscountView();
+  }
+
+  displayDiscountView() {
+    const getViewed = localStorage.getItem("viewed");
+    if(getViewed == null){
+      this._timer.subscribe(x => {
+        this.open(this.container, '', '');
+      })
+    }
+  }
+
+  orderNow() {
+    this.modalService.dismissAll();
+    localStorage.setItem("viewed", "true");
+    this._timer.subscribe().unsubscribe();
+    this.router.navigate(['/menu']);
   }
 
   clearFields() {
@@ -109,6 +131,28 @@ export class LandingComponent implements OnInit {
     this.isSuccess = false;
     this.isError = true;
     this.errorMessage = message;
+  }
+
+  open(content, type, modalDimension) {
+    if (modalDimension === 'sm' && type === 'modal_mini') {
+      this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+      });
+    } else if (modalDimension === '' && type === 'Notification') {
+      this.modalService.open(content, { windowClass: 'modal-danger', centered: true }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+      });
+    } else {
+      this.modalService.open(content, { centered: true }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+      });
+    }
   }
 
 }
