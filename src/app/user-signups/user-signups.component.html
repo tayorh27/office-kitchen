@@ -1,0 +1,187 @@
+<main class="profile-page">
+  <section class="section-profile-cover section-shaped my-0">
+    <!-- Circles background -->
+    <div class="shape shape-style-1 shape-primary alpha-4">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- SVG separator -->
+    <div class="separator separator-bottom separator-skew">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+        xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card card-profile shadow mt--300">
+        <div class="px-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  <img src="./assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div class="card-profile-actions py-4 mt-lg-0">
+                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Users</a>
+                <!-- <a href="javascript:void(0)" class="btn btn-sm btn-default float-right" *ngIf="edit_profile"
+                  (click)="saveProfile()">Save</a> -->
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-1">
+              <div class="card-profile-stats d-flex justify-content-center">
+                <div>
+                  <span class="heading">{{total_orders}}</span>
+                  <span class="description">Total Users</span>
+                </div>
+                <!-- <div>
+                  <span class="heading">{{completed_orders}}</span>
+                  <span class="description">Completed Orders</span>
+                </div>
+                <div>
+                  <span class="heading">{{failed_orders}}</span>
+                  <span class="description">Failed Orders</span>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="container" *ngIf="!view_order">
+            <div class="text-center mt-5">
+              <h3>Registered Users
+                <span class="font-weight-light"></span>
+              </h3>
+              <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Search by Phone Number:</span>
+                  </div>
+                  <input type="text" id="search_box" class="form-control" (focus)="focus1=true" (blur)="focus1=false"
+                    [(ngModel)]="search_email" />
+                  <div class="input-group-prepend">
+                    <button mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0"
+                      (click)="searching()">SEARCH</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+                <thead>
+                  <tr>
+                    <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                      scope="row">
+                      {{el.id}}</th>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.name}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.email}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.number}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.delivery}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.address}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.created}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      <button mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="viewUserOrders(el.email)">View Orders</button>
+                    </td>
+                    <!-- <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                    <button *ngIf="el.status == 'success'" mdbBtn color="success" outline="true" size="sm" mdbWavesEffect type="button" class="m-0">COMPLETED</button>
+                    <button *ngIf="el.status == 'warning'" mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0">PENDING</button>
+                    <button *ngIf="el.status == 'failed'" mdbBtn color="danger" outline="true" size="sm" mdbWavesEffect type="button" class="m-0">FAILED</button>
+                  </td>
+                  <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                    <button mdbBtn color="success" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="viewOrder(classic2, el.user_signup, el.order_id)">View</button>
+                  </td> -->
+                  </tr>
+                </tbody>
+                <tfoot class="grey lighten-5 w-100">
+                  <tr>
+                    <td colspan="4">
+                      <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- view orders start here -->
+          <div class="container" *ngIf="view_order">
+            <div class="text-center mt-5">
+                <button mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="goBack()">Go back</button>
+              <h3>User Orders
+                <span class="font-weight-light"></span>
+              </h3>
+            </div>
+            <div class="table-responsive">
+              <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+                <thead>
+                  <tr>
+                    <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                      scope="row">
+                      {{el.id}}</th>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.name}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.email}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.number}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.delivery}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.address}}
+                    </td>
+                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                      {{el.created}}
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot class="grey lighten-5 w-100">
+                  <tr>
+                    <td colspan="4">
+                      <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+          <!-- view orders end here -->
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
