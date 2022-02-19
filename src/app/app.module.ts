@@ -30,6 +30,7 @@ import { AppOverlayModule } from './overlay/overlay.module';
 import { ProgressSpinnerModule,ProgressSpinnerComponent } from './progress-spinner/progress-spinner.module';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UserSignupsComponent } from './user-signups/user-signups.component';
+import { CompaniesComponent } from './companies/companies.component';
 // import { Ng2LoadingSpinnerModule, ANIMATION_TYPES } from 'ng2-loading-spinner'
 // import { PlusSpinnerModule } from "plus-spinner";
 // "ng2-loading-spinner": "^1.3.0",
@@ -48,7 +49,8 @@ import { UserSignupsComponent } from './user-signups/user-signups.component';
     LoginComponent,
     MenuComponent,
     UserOrdersComponent,
-    UserSignupsComponent
+    UserSignupsComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,

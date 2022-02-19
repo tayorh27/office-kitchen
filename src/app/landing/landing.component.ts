@@ -52,7 +52,7 @@ export class LandingComponent implements OnInit {
 // };
 
   ngOnInit() {
-    this.displayDiscountView();
+    //this.displayDiscountView();
   }
 
   displayDiscountView() {

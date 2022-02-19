@@ -12,6 +12,7 @@ import { RouteGuard, RouteOrderGuard } from './app-route-guard';
 import { MenuComponent } from './menu/menu.component';
 import { UserOrdersComponent } from "./user-orders/user-orders.component";
 import { UserSignupsComponent } from "./user-signups/user-signups.component";
+import { CompaniesComponent } from "./companies/companies.component";
 
 const routes: Routes =[
     { path: 'home',             component: LandingComponent },
@@ -22,7 +23,8 @@ const routes: Routes =[
     { path: 'menu',          component: MenuComponent},
     { path: 'user-orders',          component: UserOrdersComponent, canActivate: [RouteOrderGuard]},
     { path: 'user-signups',          component: UserSignupsComponent, canActivate: [RouteOrderGuard]},
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'company',          component: CompaniesComponent}
 ];
 
 @NgModule({
